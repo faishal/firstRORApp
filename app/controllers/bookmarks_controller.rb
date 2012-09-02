@@ -84,7 +84,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/search/1
   # GET /bookmarks/search/1.json
   def search
-    @bookmarks = Bookmark.where("details like ?", "%" + params[:id] + "%")
+    @bookmarks = Bookmark.where("details like ? or title=?", "%" + params[:id] + "%" , params[:id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bookmarks }
