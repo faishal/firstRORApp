@@ -1,0 +1,23 @@
+<h1>Edit bookmark</h1>
+
+
+<form class="form-horizontal" id="edit-bookmark" name="bookmark">
+  <div class="control-group">
+    <label class="control-label" for="title"> Title</label>
+    <div class="controls">
+      <input type="text" name="title" id="title" value="<%= title %>" >
+    </div>
+  </div>
+  <div class="control-group">
+    <label for="details" class="control-label"> Tags</label>
+    <div class="controls">
+      <input type="text" class="tags" name="details" id="details" value="<%= details %>" >
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" class="btn btn-primary" value="Update Bookmark" />
+      <a class="btn btn-danger" href="#/index">Cancel</a>
+    </div>
+  </div>
+</form>
