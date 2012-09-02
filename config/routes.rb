@@ -1,11 +1,11 @@
 Myapp::Application.routes.draw do
-  resources :bookmarks do
+  constraints(:id => /[^\/]+/) do
+    resources :bookmarks do
     # Route GET /bookmarks/search
-    get 'search', :on => :collection
+      get 'search'
+    end  
+    match 'bookmarks/search/:id' => 'bookmarks#search'
   end
-  match 'bookmarks/search/:id' => 'bookmarks#search'
-  resources :posts
-  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
