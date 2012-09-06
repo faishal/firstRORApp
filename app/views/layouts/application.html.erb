@@ -31,6 +31,11 @@
 <%= yield %>
 <script type="text/javascript">
 var lastQuery
+$("#searchQ").keyup(function(e){
+   if (e.which == 13)
+    $('#searchform').submit();
+
+})
 $('#searchform').submit(function() {
   lastQuery=$("#searchQ").val()
   window.location="#/search/" + lastQuery

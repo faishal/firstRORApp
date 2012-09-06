@@ -3,8 +3,10 @@ Myapp::Application.routes.draw do
     resources :bookmarks do
     # Route GET /bookmarks/search
       get 'search'
+      get 'ausearch'
     end  
     match 'bookmarks/search/:id' => 'bookmarks#search'
+    match 'bookmarks/ausearch/:id' => 'bookmarks#ausearch'
   end
   
   # The priority is based upon order of creation:

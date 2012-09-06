@@ -14,12 +14,19 @@ class Myapp.Views.Bookmarks.EditView extends Backbone.View
       success : (bookmark) =>
         @model = bookmark
         window.location.hash = "/#{@model.id}"
+      error: (bookmark, jqXHR) =>
+        jerrors =$.parseJSON(jqXHR.responseText)
+        strHTML=""
+        sep=""
+        for key, value of jerrors
+          strHTML += sep + value
+          sep="<br/>"
+        this.$("#errorDetail").html(strHTML);
+        this.$("#alert").css("display","");
+
     )
 
   render : ->
     $(@el).html(@template(@model.toJSON() ))
-    @model.set({silent:false})
-    @model.change()
     this.$("form").backboneLink(@model)
-
     return this

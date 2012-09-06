@@ -84,10 +84,18 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/search/1
   # GET /bookmarks/search/1.json
   def search
-    @bookmarks = Bookmark.where("LOWER(details) like ? or LOWER(title) like ? ", "%" + params[:id].downcase + "%" , "%" + params[:id].downcase + "%")
+    @bookmarks = Bookmark.where("LOWER(details) like ? or LOWER(title) like ? or LOWER(burl) like ? ", "%" + params[:id].downcase + "%" , "%" + params[:id].downcase + "%", "%" + params[:id].downcase + "%")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @bookmarks }
+    end
+  end
+  def ausearch
+    @bookmarks = Bookmark.find_by_sql("select title as query from bookmarks where title like '%" + params[:q].downcase + "%' union select details as query from bookmarks where details like '%" + params[:q].downcase + "%' union select burl as query from bookmarks where burl like '%" + params[:q].downcase + "%'")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bookmarks }
     end
   end
 end
+

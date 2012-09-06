@@ -23,7 +23,6 @@ class Myapp.Views.Bookmarks.NewView extends Backbone.View
       success: (bookmark) =>
         @model = bookmark
         window.location.hash = "/#{@model.id}"
-
       error: (bookmark, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
     )
@@ -31,5 +30,15 @@ class Myapp.Views.Bookmarks.NewView extends Backbone.View
   render: ->
     $(@el).html(@template(@model.toJSON() ))
     this.$("form").backboneLink(@model)
-
+    if(@model.has("errors"))
+      alert("error")
+      strHTML=""
+      sep=""
+      console.log(@model.get("errors"))
+      for key, value of @model.get("errors")
+        strHTML += sep + value
+        sep="<br/>"
+        
+      this.$("#errorDetail").html(strHTML);
+      this.$("#alert").css("display","");
     return this

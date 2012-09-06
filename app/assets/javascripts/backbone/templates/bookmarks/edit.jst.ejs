@@ -1,4 +1,10 @@
 <h1>Edit bookmark</h1>
+<div class="alert alert-error" id="alert" style="display:none">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <div id='errorDetail'>
+
+  </div>
+</div>
 
 
 <form class="form-horizontal" id="edit-bookmark" name="bookmark">
@@ -6,6 +12,12 @@
     <label class="control-label" for="title"> Title</label>
     <div class="controls">
       <input type="text" name="title" id="title" value="<%= title %>" >
+    </div>
+  </div>
+   <div class="control-group">
+    <label for="burl" class="control-label"> URL</label>
+    <div class="controls">
+      <input type="text" name="burl" id="burl" value="<%= burl %>" >
     </div>
   </div>
   <div class="control-group">
@@ -21,3 +33,6 @@
     </div>
   </div>
 </form>
+<script>
+  $('.tags').tagsInput();
+</script>
