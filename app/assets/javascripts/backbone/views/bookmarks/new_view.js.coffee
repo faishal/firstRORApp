@@ -31,7 +31,6 @@ class Myapp.Views.Bookmarks.NewView extends Backbone.View
     $(@el).html(@template(@model.toJSON() ))
     this.$("form").backboneLink(@model)
     if(@model.has("errors"))
-      alert("error")
       strHTML=""
       sep=""
       console.log(@model.get("errors"))
