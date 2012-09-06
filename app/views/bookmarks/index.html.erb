@@ -15,8 +15,8 @@
         parse: function(data) {
         		var q=$("#searchQ").val();
                 var array = new Array();
-                var str=""
-                var sep=""
+                var str=","
+                var sep=","
 
                 for(var i=0;i<data.length;i++)
                 {
@@ -24,18 +24,18 @@
                 	if(data[i].query.indexOf(",")> -1) {
                 		var temp= data[i].query.split(",");
 	                	for (var j=0;j<temp.length;j++){
-	                		if(temp[j].toLowerCase().indexOf(q) > -1 && str.indexOf(temp[j].toLowerCase())== -1){
+	                		if(temp[j].toLowerCase().indexOf(q) > -1 && str.indexOf(","+temp[j].toLowerCase() + ",")== -1){
 								array[array.length] = {"data": temp[j],"result": temp[j]};	
-								str += sep + temp[j];
-								sep = ","
+								str += temp[j] + sep;
+						
 							}
 	                	}
                 	} else
                 	{
-                		if(str.indexOf(data[i].query.toLowerCase() == -1)){
+                		if(str.indexOf(","+data[i].query.toLowerCase()+ ",") == -1){
                 			array[array.length] = {"data": data[i].query, "result": data[i].query};	
-                				str += sep + data[i].query;
-								sep = ","
+                				str += data[i].query + sep ;
+						
 						}
                 	}
             	}
